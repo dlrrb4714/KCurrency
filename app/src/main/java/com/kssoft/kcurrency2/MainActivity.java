@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     String[] country;
     ListView goodListView;
     String[] prices;
-    private Gson gson;
+    Currency monies;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,9 +54,8 @@ public class MainActivity extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //List<Currency> currencies = Arrays.asList(gson.fromJson(response, Currency[].class));
-                JSONObject Response = new JSONObject(response);
-
+                monies = CurrencyJSONParser.parseData(response);
+                testTextView.setText(monies.getAmount());
             }
         }
                 , new Response.ErrorListener() {

@@ -6,5 +6,12 @@ package com.kssoft.kcurrency2;
  */
 
 public class Currency {
-    String amount;
+    private String amount;
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
 }
