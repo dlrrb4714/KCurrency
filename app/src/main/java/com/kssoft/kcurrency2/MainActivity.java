@@ -3,6 +3,7 @@ package com.kssoft.kcurrency2;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -14,15 +15,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     String[] country;
@@ -35,21 +29,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Resources res = getResources();
-        Spinner countrySpinner = (Spinner) findViewById(R.id.countrySpinner);
+        Spinner countrySpinner = (Spinner) findViewById(R.id.outerCountrySpinner);
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.Country));
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         countrySpinner.setAdapter(spinnerAdapter);
+
         goodListView = (ListView) findViewById(R.id.spinnerListView);
         country = res.getStringArray(R.array.Country);
         prices = res.getStringArray(R.array.Prices);
         goodListView.setAdapter(new ItemAdapter(this.prices, this.country, this));
 
+        ArrayList<String> retard = new ArrayList<String>();
+        String hello = goodListView.getChildAt(0).findViewById(R.id.countrySpinner).toString();
+        for (int i=0 ; i<goodListView.getCount();i++) {
+            View v = goodListView.getAdapter().getView(i,null,null);
+            Spinner sp = (Spinner) v.findViewById(i);
+            hello = hello + "," +sp.getSelectedItem().toString();
+        }
+
         final TextView testTextView = (TextView)findViewById(R.id.testTextView);
         String url = "https://www.amdoren.com/api/currency.php?api_key=X8vBUhRdqgfM3LR9mEv6DtDnVgSFyU&from=USD&to=AUD";
-
-        //GsonBuilder gsonBuilder = new GsonBuilder();
-        //gson = gsonBuilder.create();
-
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
