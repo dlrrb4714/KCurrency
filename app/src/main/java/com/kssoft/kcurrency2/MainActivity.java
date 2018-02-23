@@ -3,6 +3,7 @@ package com.kssoft.kcurrency2;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -16,6 +17,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     ListView goodListView;
     String[] prices;
     Currency monies;
+    RequestURLMaker instance = new RequestURLMaker(this);
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +43,8 @@ public class MainActivity extends AppCompatActivity {
         prices = res.getStringArray(R.array.Prices);
         goodListView.setAdapter(new ItemAdapter(this.prices, this.country, this));
 
-        ArrayList<String> retard = new ArrayList<String>();
         String hello = goodListView.getChildAt(0).findViewById(R.id.countrySpinner).toString();
-        for (int i=0 ; i<goodListView.getCount();i++) {
+        for (int i=0 ; i<goodListView.getCount() ; i++) {
             View v = goodListView.getAdapter().getView(i,null,null);
             Spinner sp = (Spinner) v.findViewById(i);
             hello = hello + "," +sp.getSelectedItem().toString();
