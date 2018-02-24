@@ -9,23 +9,25 @@ import android.widget.BaseAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class ItemAdapter extends BaseAdapter {
     Context mContext;
-    String[] mData;
-    String[] mSpinnerItems;
+    ArrayList<String> mData;
+    ArrayList<String> mSpinnerItems;
 
-    public ItemAdapter(String[] data, String[] spinnerItems, Context context) {
+    public ItemAdapter(ArrayList<String> data, ArrayList<String> spinnerItems, Context context) {
         this.mData = data;
         this.mSpinnerItems = spinnerItems;
         this.mContext = context;
     }
 
     public int getCount() {
-        return this.mData.length;
+        return this.mData.size()
     }
 
     public Object getItem(int position) {
-        return this.mData[position];
+        return this.mData.get(position);
     }
 
     public long getItemId(int position) {
@@ -38,7 +40,7 @@ public class ItemAdapter extends BaseAdapter {
             view = ((LayoutInflater) this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.listview_detail, null);
         }
         Spinner spinner = (Spinner) view.findViewById(R.id.countrySpinner);
-        ((TextView) view.findViewById(R.id.priceTextView)).setText(this.mData[position]);
+        ((TextView) view.findViewById(R.id.priceTextView)).setText(getItem(position).toString());
         spinner.setAdapter(new ArrayAdapter(this.mContext,android.R.layout.simple_spinner_item, this.mSpinnerItems));
         return view;
     }

@@ -8,12 +8,12 @@
         <item>Japan</item>
         <item>Great Britain</item>
     </string-array>
-    <string-array name = "Prices">
-        <item>144</item>
-        <item>452</item>
-        <item>69</item>
-        <item>1</item>
-        <item>5</item>
-        <item>7</item>
+    <string-array name = "Currency">
+        <item>NZD</item>
+        <item>AUD</item>
+        <item>KRW</item>
+        <item>CNY</item>
+        <item>JPY</item>
+        <item>GBP</item>
     </string-array>
 </resources>

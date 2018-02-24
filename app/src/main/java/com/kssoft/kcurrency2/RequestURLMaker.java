@@ -12,16 +12,16 @@ import android.widget.Spinner;
 
 public class RequestURLMaker {
 
-    public RequestURLMaker(Activity _activity) {
-        Activity activity = _activity;
-        ListView goodListView = (ListView) activity.findViewById(R.id.spinnerListView);
-        String hello = goodListView.getChildAt(0).findViewById(R.id.countrySpinner).toString();
-        View v;
-        Spinner sp;
-        for (int i=0 ; i<goodListView.getCount() ; i++) {
-            v = goodListView.getAdapter().getView(i,null,null);
-            sp = (Spinner) v.findViewById(i);
-            hello = hello + "," + sp.getSelectedItem().toString();
+    public static String RequestURLMaker(String source, String destination, String amount) {
+
+        return "https://www.amdoren.com/api/currency.php?api_key=X8vBUhRdqgfM3LR9mEv6DtDnVgSFyU&from="+source+"&to="+destination+"&amount="+amount;
+    }
+
+    public static String CurrencyFinder(String country, String[] countries, String[] currencies) {
+        for (int i=0 ; i<countries.length ; i++) {
+            if (country == countries[i]) {
+                return currencies[i];
+            }
         }
     }
 }

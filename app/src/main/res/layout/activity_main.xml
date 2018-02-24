@@ -33,8 +33,29 @@
         android:id="@+id/testTextView"
         android:layout_width="94dp"
         android:layout_height="34dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="212dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="42dp" />
+        tools:layout_editor_absoluteY="41dp" />
+
+    <EditText
+        android:id="@+id/amountText"
+        android:layout_width="112dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="Input a number"
+        android:inputType="number"
+        android:text="Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="55dp"
+        android:layout_height="36dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="@+id/amountText"
+        tools:layout_editor_absoluteX="321dp" />
 </android.support.constraint.ConstraintLayout>
