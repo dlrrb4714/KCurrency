@@ -23,5 +23,6 @@ public class RequestURLMaker {
                 return currencies[i];
             }
         }
+        return null;
     }
 }
