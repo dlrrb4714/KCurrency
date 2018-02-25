@@ -28,8 +28,10 @@ import static com.android.volley.toolbox.Volley.newRequestQueue;
 public class MainActivity extends AppCompatActivity {
     String[] country;
     String[] currencies;
+    ArrayList<String> empty = new ArrayList<>();
+    String[] empty2;
     ListView goodListView;
-    ArrayList<String> prices;
+    ArrayList<String> prices = new ArrayList<>();
     Currency monies;
     Button goodButton;
 
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Resources res = getResources();
-        Spinner outerCountrySpinner = (Spinner) findViewById(R.id.outerCountrySpinner);
+        final Spinner outerCountrySpinner = (Spinner) findViewById(R.id.outerCountrySpinner);
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.Country));
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         outerCountrySpinner.setAdapter(spinnerAdapter);
@@ -46,15 +48,21 @@ public class MainActivity extends AppCompatActivity {
         goodListView = (ListView) findViewById(R.id.spinnerListView);
         country = res.getStringArray(R.array.Country);
         currencies = res.getStringArray(R.array.Currency);
+        for (int i = 0 ; i < 5 ; i++) {
+            empty.add("0");
+        }
+        empty2 = res.getStringArray(R.array.Empty);
+        goodListView.setAdapter(new ItemAdapter(this.empty, this.country, this));
 
-        final Spinner outerCountrySpinner2 = (Spinner) findViewById(R.id.outerCountrySpinner);
+        //final Spinner outerCountrySpinner2 = (Spinner) findViewById(R.id.outerCountrySpinner);
         //goodListView.setAdapter(new ItemAdapter(this.prices, this.country, this));
 
+        /*
         for (int i = 0 ; i < goodListView.getCount() ; i++) {
             View view = goodListView.getChildAt(i);
-            Spinner sp = view.findViewById(R.id.countrySpinner);
+            Spinner sp = findViewById(R.id.countrySpinner);
             EditText et = findViewById(R.id.amountText);
-            String source =RequestURLMaker.CurrencyFinder(outerCountrySpinner2.getSelectedItem().toString(),country,currencies);
+            String source = RequestURLMaker.CurrencyFinder(outerCountrySpinner.getSelectedItem().toString(),country,currencies);
             String destination = RequestURLMaker.CurrencyFinder(sp.getSelectedItem().toString(),country,currencies);
             String amount = et.getText().toString();
             String url = RequestURLMaker.RequestURLMaker(source, destination, amount);
@@ -76,7 +84,10 @@ public class MainActivity extends AppCompatActivity {
             });
             queue.add(request);
         }
-        
+        goodListView.setAdapter(new ItemAdapter(this.prices, this.country, this));
+        */
+
+        /*
         goodButton = (Button) findViewById(R.id.goButton);
         goodButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                     View view = goodListView.getChildAt(i);
                     Spinner sp = view.findViewById(R.id.countrySpinner);
                     EditText et = findViewById(R.id.amountText);
-                    String source =RequestURLMaker.CurrencyFinder(outerCountrySpinner2.getSelectedItem().toString(),country,currencies);
+                    String source =RequestURLMaker.CurrencyFinder(outerCountrySpinner.getSelectedItem().toString(),country,currencies);
                     String destination = RequestURLMaker.CurrencyFinder(sp.getSelectedItem().toString(),country,currencies);
                     String amount = et.getText().toString();
                     String url = RequestURLMaker.RequestURLMaker(source, destination, amount);
@@ -107,9 +118,11 @@ public class MainActivity extends AppCompatActivity {
                     });
                     queue.add(request);
                 }
-
+                goodListView.setAdapter(new ItemAdapter(MainActivity.this.prices, MainActivity.this.country, MainActivity.this));
             }
         });
+        */
+
         /*for (int i = 0 ; i < goodListView.getCount() ; i ++) {
             View v = goodListView.getChildAt(i);
             Spinner sp = v.findViewById(R.id.countrySpinner);
@@ -136,7 +149,8 @@ public class MainActivity extends AppCompatActivity {
             });
             queue.add(request);
         } */
-        goodListView.setAdapter(new ItemAdapter(this.prices, this.country, this));
+
+        //goodListView.setAdapter(new ItemAdapter(this.prices, this.country, this));
         /*final TextView testTextView = (TextView)findViewById(R.id.testTextView);
         String url = "https://www.amdoren.com/api/currency.php?api_key=X8vBUhRdqgfM3LR9mEv6DtDnVgSFyU&from=USD&to=AUD";
         RequestQueue queue = Volley.newRequestQueue(this);

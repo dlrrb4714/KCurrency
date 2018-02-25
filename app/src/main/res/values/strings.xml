@@ -16,4 +16,12 @@
         <item>JPY</item>
         <item>GBP</item>
     </string-array>
+    <string-array name="Empty">
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </string-array>
 </resources>

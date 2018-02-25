@@ -33,16 +33,12 @@
         android:id="@+id/amountText"
         android:layout_width="112dp"
         android:layout_height="36dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Input a number"
         android:inputType="number"
-        android:text="Name"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerListView"
-        app:layout_constraintEnd_toStartOf="@+id/goButton"
+        android:text="1"
         app:layout_constraintStart_toEndOf="@+id/outerCountrySpinner"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,9 +46,10 @@
         android:id="@+id/goButton"
         android:layout_width="55dp"
         android:layout_height="36dp"
-        android:layout_marginBottom="12dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="88dp"
         android:text="Button"
         app:layout_constraintBottom_toTopOf="@+id/spinnerListView"
         app:layout_constraintEnd_toEndOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
